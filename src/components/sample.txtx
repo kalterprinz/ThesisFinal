@@ -1,0 +1,497 @@
+import React, { useState, useEffect, useRef } from 'react';
+import Modal from "react-modal"; //
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
+import './QrCodeScanner.css';
+import SidebarOfficer from './SidebarOfficer';
+import OfficerHeader from './OfficerHeader';
+import jsQR from 'jsqr';
+
+Modal.setAppElement("#root"); 
+
+const QrCodeScanner = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [scanning, setScanning] = useState(false);
+  const [qrCode, setQrCode] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+  const requestRef = useRef(null);
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        videoRef.current.play();
+        requestRef.current = requestAnimationFrame(scanQRCode);
+      }
+    } catch (err) {
+      setError('Error accessing camera: ' + err.message);
+    }
+  };
+
+  const stopCamera = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      const stream = videoRef.current.srcObject;
+      const tracks = stream.getTracks();
+      tracks.forEach((track) => track.stop());
+      videoRef.current.srcObject = null;
+    }
+    cancelAnimationFrame(requestRef.current);
+  };
+
+  useEffect(() => {
+    if (scanning) {
+      setMessage('Scanning QR...');
+      startCamera();
+      requestAnimationFrame(scanQRCode);
+    } else {
+      setMessage('');
+      stopCamera();
+    }
+
+    return stopCamera;
+  }, [scanning]);
+
+  const scanQRCode = () => {
+    if (canvasRef.current && videoRef.current) {
+      const context = canvasRef.current.getContext('2d');
+  
+      // Ensure the video element is ready
+      if (videoRef.current.videoWidth === 0 || videoRef.current.videoHeight === 0) {
+        requestRef.current = requestAnimationFrame(scanQRCode);
+        return;
+      }
+  
+      // Set canvas dimensions
+      canvasRef.current.width = videoRef.current.videoWidth;
+      canvasRef.current.height = videoRef.current.videoHeight;
+  
+      // Draw video frame on the canvas
+      context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
+  
+      // Get image data from the canvas
+      const imageData = context.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
+  
+      // Decode QR code
+      const code = jsQR(imageData.data, imageData.width, imageData.height);
+  
+      if (code) {
+        setQrCode(code.data);
+        setMessage('QR Code Detected!');
+        setScanning(false);
+        stopCamera();
+        setModalIsOpen(true);
+      } else {
+        setMessage('QR Code not detected. Keep scanning...');
+        requestRef.current = requestAnimationFrame(scanQRCode);
+      }
+    }
+  };
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const img = new Image();
+      img.src = URL.createObjectURL(file);
+      img.onload = () => {
+        setUploadedImage(img); // Store the uploaded image to use it for scanning
+      };
+      img.onerror = () => {
+        console.error("Failed to load the image."); // Debugging log
+        setMessage('Error loading the uploaded image.');
+      };
+    }
+  };
+
+  const renderQrCodeData = () => {
+    // Parse the QR code data if it's a valid JSON string
+    let parsedData;
+    try {
+      parsedData = JSON.parse(qrCode);
+    } catch (error) {
+      return <p>Error parsing QR Code data.</p>;
+    }
+  
+    // Map through the object and display the key-value pairs
+    return (
+      <div>
+        {Object.keys(parsedData).map((key) => (
+          key !== "" && (
+            <p key={key}>
+              <strong>{key}: </strong>{parsedData[key]}
+            </p>
+          )
+        ))}
+      </div>
+    );
+  };
+
+  const handleScanUploadedQR = () => {
+    if (uploadedImage && canvasRef.current) {
+      const context = canvasRef.current.getContext('2d');
+      canvasRef.current.width = uploadedImage.width;
+      canvasRef.current.height = uploadedImage.height;
+      context.drawImage(uploadedImage, 0, 0);
+      const imageData = context.getImageData(0, 0, uploadedImage.width, uploadedImage.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+      if (code) {
+        setQrCode(code.data);
+        setMessage('QR Code Detected from uploaded file!');
+        setModalIsOpen(true);
+      } else {
+        setMessage('No QR Code detected in the uploaded file.');
+      }
+    }
+  };
+
+  const handleScanAgain = () => {
+    setModalIsOpen(false);
+    setQrCode("");
+    setScanning(true); // Restart scanning
+  };
+
+  const handleCreateTicket = () => {
+    setModalIsOpen(false);
+    alert("Creating ticket for: " + qrCode); // Replace with your logic for creating a ticket
+  };
+// create ticket
+const [isModalOpen, setIsModalOpen] = useState(false);
+const [formState, setFormState] = useState({
+  ticketNumber: "",
+  dateOfApprehension: "",
+  timeOfApprehension: "",
+  nameOfDriver: "",
+  gender: "",
+  age: "",
+  vehicleClassification: "",
+  placeOfViolation: "",
+  violationType: "",
+  recordSource: "",
+  violationDes: "",
+  fineStatus: "",
+  dateOfBirth: "",
+  address: "",
+  phoneNumber: "",
+  email: "",
+  occupation: "",
+  licenseNumber: "",
+  expirationDate: "",
+  dateOfIssue: "",
+  licenseClassification: "",
+  plateNumber: "",
+  vehicleModel: "",
+  vehicleMake: "",
+  vehicleYear: "",
+});
+
+const [fineAmount, setFineAmount] = useState("");
+
+const handleOpenModal = () => {
+  setIsModalOpen(true);
+  setModalIsOpen(false)
+};
+
+const handleCloseModal = () => {
+  setIsModalOpen(false);
+  // Reset the form when the modal is closed if needed
+  setFormState({
+    ticketNumber: "",
+    dateOfApprehension: "",
+    timeOfApprehension: "",
+    nameOfDriver: "",
+    gender: "",
+    age: "",
+    vehicleClassification: "",
+    placeOfViolation: "",
+    violationType: "",
+    recordSource: "",
+    violationDes: "",
+    fineStatus: "",
+    dateOfBirth: "",
+    address: "",
+    phoneNumber: "",
+    email: "",
+    occupation: "",
+    licenseNumber: "",
+    expirationDate: "",
+    dateOfIssue: "",
+    licenseClassification: "",
+    plateNumber: "",
+    vehicleModel: "",
+    vehicleMake: "",
+    vehicleYear: "",
+  });
+};
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  // Add form submission logic here
+};
+
+  return (
+    <div className={`dashboard-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+      <OfficerHeader />
+      <SidebarOfficer isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <main className="main-section1">
+        <div className="outerContainer">
+          <div className="containerqr">
+            <div className="newBox">
+              <div className="contentWrapper">
+                <div className="descriptionBox">
+                  <p>Scan your QR Code</p>
+                  <ul>
+                    <li>Step 1. Prepare the QR code</li>
+                    <li>Step 2. Prepare your camera</li>
+                    <li>Step 3. Click the start scanning button</li>
+                    <li>Step 4. Scan the QR code</li>
+                  </ul>
+                  <p className="line">--------OR--------</p>
+                  <p>Upload QR Code</p>
+                  <ul>
+                    <li>Step 1. Click the upload icon</li>
+                    <li>Step 2. Select the QR code</li>
+                  </ul>
+
+                  <div className="uploadSection">
+                    <label htmlFor="file-upload" className="uploadBox">
+                      <p style={{ fontSize: '13px', textAlign: 'center' }}>
+                        Upload your QR code Here<br />
+                        <FontAwesomeIcon icon={faCloudArrowUp} size="xl" />
+                      </p>
+                      <input
+                        type="file"
+                        id="file-upload"
+                        accept="image/*"
+                        onChange={handleFileUpload}
+                        className="uploadInput"
+                      />
+                    </label>
+                    {uploadedImage && (
+                      <button onClick={handleScanUploadedQR} className="buttonqrupload">
+                        Scan Uploaded QR
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <div className="scannerWithDescription">
+                  <div className="scannerBox">
+                    <div className="videoWrapper">
+                      <video ref={videoRef} autoPlay muted playsInline style={{ transform: 'scaleX(-1)' }} />
+                      <canvas ref={canvasRef} style={{ display: 'none' }} />
+                      <svg
+                        className="qr-frame"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 200 200"
+                      >
+                        <rect x="30" y="30" width="140" height="140" stroke="white" strokeWidth="2" fill="none" />
+                      </svg>
+                    </div>
+                    <button onClick={() => setScanning((prev) => !prev)} className="button">
+                      {scanning ? 'Stop Scanning' : 'Start Scanning'}
+                    </button><br/>
+                    {message && <p>{message}</p>}
+                    {qrCode && <p>QR Code Scanned</p>}
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                  </div>
+                  
+                  {/* modal for scanned qr result */}
+                  <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={() => setModalIsOpen(false)}
+                    className="modalqr"
+                    overlayClassName="overlayqr"
+                  >
+                    <h2>Scanned QR Code</h2>
+                    {/*<p>{qrCode}</p>*/}
+                    {renderQrCodeData()}
+                    <div className="modal-buttonsqr">
+                      <button onClick={handleScanAgain} className="buttonqr">
+                        Scan QR Again
+                      </button>
+                      <button onClick={handleOpenModal} className="buttonqr">
+                        Create Ticket
+                      </button>
+                    </div>
+                  </Modal>
+
+                  {/* modal for create ticket */}
+
+                  {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <button onClick={handleCloseModal}>Close</button>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="ticket-id">Ticket Number/ID</label>
+              <input
+                id="ticket-id"
+                type="text"
+                value={formState.ticketNumber}
+                disabled
+                required
+              />
+
+              <label htmlFor="date-of-apprehension">Date of Apprehension</label>
+              <input
+                id="date-of-apprehension"
+                type="date"
+                value={formState.dateOfApprehension}
+                onChange={(e) => setFormState({ ...formState, dateOfApprehension: e.target.value })}
+                required
+              />
+
+              <label htmlFor="time-of-apprehension">Time of Apprehension</label>
+              <input
+                id="time-of-apprehension"
+                type="text"
+                placeholder="Enter time (HH:MM:SS)"
+                value={formState.timeOfApprehension}
+                onChange={(e) => setFormState({ ...formState, timeOfApprehension: e.target.value })}
+                required
+              />
+
+              <label htmlFor="driver-name">Name of Driver</label>
+              <input
+                id="driver-name"
+                type="text"
+                placeholder="Enter Name of Driver"
+                value={formState.nameOfDriver}
+                onChange={(e) => setFormState({ ...formState, nameOfDriver: e.target.value })}
+                required
+              />
+
+              <label htmlFor="gender">Gender</label>
+              <select
+                id="gender"
+                value={formState.gender}
+                onChange={(e) => setFormState({ ...formState, gender: e.target.value })}
+                required
+              >
+                <option value="" disabled>Select gender</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+              </select>
+
+              <label htmlFor="age">Age</label>
+              <input
+                id="age"
+                type="number"
+                placeholder="Enter Age"
+                value={formState.age}
+                onChange={(e) => setFormState({ ...formState, age: e.target.value })}
+                required
+              />
+
+              <label htmlFor="classsification-of-vehicle">Classification of Vehicle</label>
+              <select
+                id="classsification-of-vehicle"
+                value={formState.vehicleClassification}
+                onChange={(e) => setFormState({ ...formState, vehicleClassification: e.target.value })}
+                required
+              >
+                <option value="" disabled>Select classification of vehicle</option>
+                <option value="PUV">PUV (Public Utility Vehicle)</option>
+                <option value="Private">Private</option>
+                <option value="Government">Government Vehicle</option>
+                <option value="PUJ">PUJ (Public Utility Jeepney)</option>
+                <option value="PUB">PUB (Public Utility Bus)</option>
+                <option value="MC">Motorcycle</option>
+                <option value="TRI">Tricycle</option>
+              </select>
+
+              <label htmlFor="place-of-violation">Place of Violation</label>
+              <select
+                id="place-of-violation"
+                value={formState.placeOfViolation}
+                onChange={(e) => setFormState({ ...formState, placeOfViolation: e.target.value })}
+                required
+              >
+                <option value="" disabled>Select Place of Violation</option>
+                {/* List of options here */}
+              </select>
+
+              <label htmlFor="violation-type">Violation Type</label>
+              <select
+                id="violation-type"
+                value={formState.violationType}
+                onChange={(e) => setFormState({ ...formState, violationType: e.target.value })}
+                required
+              >
+                <option value="" disabled>Select Violation Type</option>
+                {/* List of options here */}
+              </select>
+
+              <label htmlFor="record-source">Agency</label>
+              <select
+                id="record-source"
+                value={formState.recordSource}
+                onChange={(e) => setFormState({ ...formState, recordSource: e.target.value })}
+                required
+              >
+                <option value="" disabled>Select Agency</option>
+                <option value="LTO">LTO</option>
+                <option value="PNP">PNP</option>
+                <option value="ICTPMO">ICTPMO</option>
+              </select>
+
+              <label htmlFor="fine-amount">Fine Amount</label>
+              <input id="fine-amount" type="text" value={fineAmount} disabled />
+
+              <label htmlFor="violation-description">Violation Description</label>
+              <textarea
+                id="violation-description"
+                placeholder="Enter details about the violation"
+                value={formState.violationDes}
+                onChange={(e) => setFormState({ ...formState, violationDes: e.target.value })}
+                rows="4"
+                required
+              ></textarea>
+
+              <label htmlFor="fine-status">Fine Status</label>
+              <select
+                id="fine-status"
+                value={formState.fineStatus}
+                onChange={(e) => setFormState({ ...formState, fineStatus: e.target.value })}
+                required
+              >
+                <option value="" disabled>Select Fine Status</option>
+                <option value="Paid">Paid</option>
+                <option value="Unpaid">Unpaid</option>
+              </select>
+
+              <label htmlFor="date-of-birth">Date of Birth</label>
+              <input
+                id="date-of-birth"
+                type="date"
+                value={formState.dateOfBirth}
+                onChange={(e) => setFormState({ ...formState, dateOfBirth: e.target.value })}
+                required
+              />
+
+              {/* Add more fields as needed */}
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default QrCodeScanner;

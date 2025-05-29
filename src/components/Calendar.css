@@ -1,0 +1,218 @@
+  
+  .containerCC {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+   
+  }
+  
+  .calendar {
+    background: #2b4450;
+    border-radius: 4px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    height: 250px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.9s;
+    width: 260px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+  }
+  
+  .front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+  }
+  
+  .front {
+    transform: rotateY(0deg);
+    height: 110%;
+  }
+  
+  .back {
+    transform: rotateY(180deg);
+    height: inherit;
+    border-radius: 5px;
+  }
+  
+  .calendar.flip .front {
+    transform: rotateY(-180deg);
+  }
+  
+  .calendar.flip .back {
+    transform: rotateY(0deg);
+    padding: 5px;
+    width: -webkit-fill-available;
+    overflow: scroll;
+  }
+  
+  .current-date {
+    border-bottom: 1px solid rgba(73, 114, 133, 0.6);
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+  }
+  
+  .current-date h1 {
+    color: #dfebed;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  .week-labels {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 0 5px;
+    margin: 20px 0 10px;
+  }
+  
+  .week-labels div {
+    color: #dfebed;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+  }
+  
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+  
+  .day, .empty-day {
+    align-items: center;
+    border-radius: 4px;
+    color: #dfebed;
+    cursor: pointer;
+    display: flex;
+    font-size: 12px;
+    justify-content: center;
+    padding: 5px;
+    margin: 0;
+    width: 20px;
+    height: auto;
+    transition: background 0.3s ease;
+  }
+  .empty-day{
+    background: transparent;
+    cursor: default;
+  }
+  .today {
+    background-color: #f0f0f0;
+    color: red;
+    font-weight: 900;
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    text-align: center;
+    transform: rotate(-2deg);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .today::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background-color: rgba(255, 255, 255, 0.3); /* White halo effect around the date */
+    border-radius: inherit; /* Match the irregular shape */
+  }
+  
+  .day:hover {
+    background: #aad3df;
+    color: #292929;
+  }
+  
+  .info1 {
+    color: #dfebed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    text-align: left;
+    margin: 0px 5px;
+  }
+  
+  .info1 h1{
+    color: #fff;
+    margin: 10px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+  }
+  .info1 p, .infop {
+    color: #fff;
+    font-size: 12px;
+  }
+  .infop{
+    margin-bottom: -5px;
+  }
+  
+  .months  {
+    background: #497285;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 10px;
+    margin: 10px auto;
+    padding: 2px 5px;
+    transition: background 0.3s ease;
+  }
+
+  .months:hover {
+    background: #f78536;
+  }
+  .months:active {
+    background: #5889a0;
+  }
+  
+  .flipbutton {
+    background: #497285;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 10px;
+    padding: 2px 5px;
+    position: absolute; /* Position the button absolutely */
+    top: 10px; /* Adjust distance from the top */
+    right: 10px; /* Adjust distance from the right */
+    transition: background 0.3s ease;
+  }
+  
+  .flipbutton:hover {
+    background: #f78536;
+  }
+  
+  .flipbutton:active {
+    background: #5889a0;
+  }
+  
+  .due-date {
+    background-color: #ffcc00; /* Yellow highlight */
+    border-radius: 50%;
+    font-weight: bold;
+    color: #000;
+  }
+
+  @media (min-width: 360px) and (max-width: 768px) {
+    .containerCC {
+      margin: 19px auto;
+    }
+    .calendar {
+      width: 320px;
+    }
+    .front {
+      width: 321px;
+    }
+  }

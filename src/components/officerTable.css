@@ -1,0 +1,237 @@
+
+.records-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+
+.add-data-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.add-data-btn:hover {
+  background-color: #45a049;
+}
+
+.csv-uploader-officer {
+  display: flex;
+  align-items: center;
+  gap: -10px; /* Space between the input and button */
+  padding-left: 25px;
+  padding-right: 10px;
+  border-radius: 8px;
+  width: 40%;
+  height: 55px;
+  margin-left: 57%;
+  margin-top: 60px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #edf7ff;
+  margin-bottom: 20px;
+}
+
+.form-rowof {
+  display: flex;
+  gap: 20px; /* Space between fields */
+  margin-bottom: 15px; /* Space below the row */
+}
+
+.form-groupof {
+  flex: 1; /* Equal width for both fields */
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+form select,
+form input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.records-table th, .records-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.records-table th {
+  background-color: #2c3e50;
+}
+
+.records-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.records-table tr:hover {
+  background-color: #ddd;
+}
+.file-officer {
+  padding: 2px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  width: 500px; /* Adjust width if needed */
+
+}
+
+.upload-button {
+  background-color: #05223e;
+  color: white;
+  padding: 10px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-left: -20px;
+  width: 150px;
+
+
+}
+
+.pagination-controls {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.pagination-controls button {
+  padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #3ab0d4;
+    cursor: pointer;
+    background-color: #3ab0d4;
+    color: white;
+}
+
+.pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.modal-content label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.modal-content input,
+.modal-content select {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-content button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.modal-content button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.modal-content button[type="button"] {
+  background-color: #d9534f;
+  color: white;
+}
+
+.buttonsofrec{
+	gap: 5px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+
+  }
+
+  .records-officerrec {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 12px;
+    text-align: center;
+    padding: 0 20px 20px 20px;
+    width: -webkit-fill-available;
+  }
+
+  .records-officerrec table{
+    
+    display: table;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    text-indent: initial;
+    unicode-bidi: isolate;
+    border-spacing: 2px;
+    overflow-y: scroll;
+  }
+  
+  .records-officerrec th, .records-officerrec td {
+    padding: 8px;
+    text-align: center;
+    align-items: center;
+    font-size: 12px;
+  }
+  
+  .records-officerrec th {
+    background-color: #2c3e50;
+    color: white;
+    font-size: 12px;
+  }
+  
+  .records-officerrec tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .records-officerrec tr:hover {
+    background-color: #ddd;
+  }

@@ -1,0 +1,162 @@
+.container {
+  display: flex;
+  gap: 20px;
+  overflow: auto;
+}
+
+.officer-list {
+  width: 180px;
+  background: #f4f4f4;
+  padding: 0px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.officer-list h3{
+  margin: 20px 0 10px 0;
+  font-size: 16px;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 5px;
+}
+
+.search-sort-bar {
+display: flex;
+align-items: center;
+margin-top: 8px;
+gap: 5px;
+}
+
+.search-input {
+flex: 1;
+padding: 4px 6px;
+font-size: 12px;
+border-radius: 4px;
+border: 1px solid #ccc;
+margin: 0 0 10px 0;
+}
+
+.sort-btn {
+background: none;
+border: none;
+cursor: pointer;
+font-size: 16px;
+color: #333;
+}
+
+.officer-scroll-area {
+overflow-y: auto;
+max-height: 400px; /* Adjust this based on your layout */
+margin-top: 10px;
+}
+
+.officer {
+  background: #007bff;
+  color: white;
+  padding: 5px;
+  margin-bottom: 5px;
+  cursor: grab;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.barangay-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  
+}
+.barangay-grid-container {
+  max-height: 500px; /* or whatever height fits your layout */
+  overflow-y: auto; /* vertical scrolling */
+  padding-right: 5px; 
+  width: -webkit-fill-available;
+}
+
+.barangay-box {
+  width: 180px;
+  height: 150px;
+  padding: 10px;
+  border: 1px dashed gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #fff;
+  border-radius: 6px;
+  text-align: center;
+  align-content: center;
+  flex-direction: column;
+}
+.barangay-box p{
+  font-size: 14px;
+  text-align: center;
+  margin-top: 0px;
+  /* border-bottom: 1px solid #1a1a1a; */
+  margin-bottom: 5px;
+  background-color: darkgray;
+  width: 100%;
+  justify-content: center;
+  font-weight: bold;
+  padding: 2px;
+  border-radius: 8px;
+  display: flex;
+}
+.barangay-officers-scroll {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 8px;
+  width: 100%;
+}
+.assigned-officer {
+  background: green;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.assigned-officer .remove-officer {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+
+.empty {
+  font-size: 12px;
+  color: gray;
+  
+}
+
+.reset-btn {
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 15px;
+  }
+
+  .remove-officer:hover {
+    color: red;
+  }
+
+  .barangay-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    width: 100%;
+  }
+  
+  .officer-count {
+    font-size: 12px;
+    color: #555;
+    background: #eee;
+    padding: 2px 6px;
+    border-radius: 8px;
+  }
+  

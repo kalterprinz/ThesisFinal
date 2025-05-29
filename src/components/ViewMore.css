@@ -1,0 +1,720 @@
+/* Main Container Styling */
+.viewmoreof{
+  position: relative;
+  top: 80px;
+}
+.view-more-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .headerV { 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: margin-left 0.3s ease;
+    position: fixed;
+    width: 96%;
+    z-index: 1000;
+    }
+  /* Driver Information Section */
+  /* Driver Information Section */
+.driver-info {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .driver-profile {
+    flex: 0 0 150px;
+    border-radius: 10px; /* Slight rounded corners for the box */
+    padding: 5px; /* Optional: Add padding around the image */
+  }
+  
+  .driver-profile img {
+    width: 100%; /* Make the image fill the box */
+    height: 200px; /* Maintain aspect ratio */
+    display: block;
+    object-fit: cover; /* Ensures image fits the box without distortion */
+  }
+  
+  
+  .driver-details {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .driver-details p {
+    margin: 5px 0;
+    font-size: 1em;
+  }
+  
+  .driver-details strong {
+    min-width: 150px; /* Set a fixed width for the label */
+    text-align: left; /* Align label text to the left */
+    margin-right: 10px; /* Optional spacing after the label */
+  }
+  
+  .driver-details span {
+    text-align: justify; /* Justify the values */
+    flex: 1; /* Allow the value to expand */
+  }
+  
+  .details-table, .details-table123 {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .details-table thead , .details-table123 thead{
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .details-table th,
+  .details-table td {
+    padding: 4px 0px 4px 20px;
+    vertical-align: top; 
+    font-weight: lighter;
+    font-size: 14px;
+    text-align: left;
+  }
+  .details-table123 th,
+  .details-table123 td {
+    padding: 4px 0px 4px 10px;
+    vertical-align: top;
+    font-weight: lighter;
+    font-size: 14px;
+    text-align: left;
+    width: 160px;
+  }
+  
+  
+  .details-table th, .details-table123 th {
+    font-weight: bold;
+  }
+  .details-table td {
+    text-transform: uppercase;
+
+  }
+  .details-table th {
+  
+    width: 165px;
+  }
+  
+  .details-table1 {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .details-table1 thead {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .details-table1 th,
+  .details-table1 td {
+    padding: 4px 100px 2px 60px;
+    vertical-align: top; 
+    font-weight: lighter;
+    font-size: 14px;
+    text-align: left;
+  }
+  .details-table13 th,  .details-table14 th{
+    padding: 4px 0px 2px 60px;
+    vertical-align: top; 
+    font-weight: lighter;
+    font-size: 14px;
+    text-align: left;
+  }
+  .details-table13 td {
+    padding: 4px 0px 2px 190px;
+    width: 400px;
+    vertical-align: top; 
+    font-weight: lighter;
+    font-size: 14px;
+    text-align: left;
+  }
+  .details-table14 td {
+    padding: 4px 0px 2px 238px;
+    width: 400px;
+    vertical-align: top; 
+    font-weight: lighter;
+    font-size: 14px;
+    text-align: left;
+  }
+  .details-table2 th,
+  .details-table2 td {
+    padding: 4px 95px 4px 60px;
+    vertical-align: top; 
+    font-weight: lighter;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .details-table3 th,
+  .details-table3 td {
+    padding: 4px 95px 4px 60px;
+    vertical-align: top; 
+    font-weight: lighter;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .details-table1 th,.details-table2 th,.details-table3 th ,.details-table13 th,.details-table14 th {
+    font-weight: bold;
+  }
+  
+  .align-left {
+    text-align: left;
+  }
+  
+  .align-center {
+    text-align: center;
+  }
+  
+  .align-right {
+    text-align: right;
+  }
+  .viewheader{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 5px;
+    padding: 0px 55px;
+    align-content: center;
+    flex-direction: column;
+  }
+  
+  .file-case-button {
+    top: 56px;
+    width: 100%;
+    max-width: 120px;
+    right: 230px;
+    padding: 8px 18px;
+    background-color: #d32f2f;
+    color: white;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .file-case-button:hover, .file:hover {
+    background-color: #0056b3;
+  }
+  
+  .back-button {
+    top: 80px;
+    left: 60px;
+    font-size: 12px;
+    width: 100%;
+    max-width: 120px;
+    padding: 8px 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  
+  .section {
+    margin-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  
+  /* Section Styling */
+  .section-title {
+    font-size:17px;
+    background-color: #05223e;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .section p {
+    font-size: 1em;
+    margin: 5px 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .driver-info {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .driver-profile {
+      margin-bottom: 15px;
+    }
+  }
+
+
+  .file{
+    padding: 2px;
+    font-size: 11px;
+    background-color: #f05858;
+    color: white;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+
+.case-status {
+  margin-top: 10px;
+  font-size: 16px;
+  color: green;
+  font-weight: bold;
+}
+
+/* Modal Container Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  display: flex;
+  align-items: flex-start; /* Align to top to start scrolling */
+  justify-content: center;
+  overflow-y: auto; /* Enable scrolling for the entire viewport */
+  z-index: 1000;
+  padding: 20px; /* Add some padding for better spacing */
+}
+/* Modal Content Styles */
+.modal .content {
+  background-color: #fff; /* White background for the modal */
+  width: 100%; /* Full width */
+  max-width: 900px; /* Maximum width for the modal */
+  height: 1250px;
+  border-radius: 8px; /* Rounded corners */
+ /* Subtle shadow */
+  position: relative;
+  padding: 20px ; /* Padding for content */
+  margin-bottom: 50px; /* Space at the bottom of the modal */
+  box-sizing: border-box; /* Ensures padding is included in total width/height */
+}
+
+/* Modal Header Styles */
+.modal-header {
+  display: flex;
+  flex: 1 4 1;
+  align-items: center;
+  margin: 50px 40px;
+  justify-content: space-between;
+}
+
+.seal,  .logocase {
+  width: 100px;
+  height: 100px;
+}
+.logoictpmo{
+  width: 100px;
+  height: 100px;
+}
+
+.seal-container,.logo-container   {
+  flex: 1;
+  display: contents;
+}
+
+.titleview {
+  text-align: center;
+  display: block;
+  font-family: 'Times New Roman', Times, serif;
+  flex: 3;
+  font-size: 14px;
+}
+
+.titleview h3 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.titleview p {
+  margin: 2px 0;
+  color: black;
+}
+.titleviewp {
+  margin-top: -15px;
+  text-align: justify;
+  line-height: 10px;
+  font-size: 14px;
+}
+.titleviewpA {
+  margin-top: 10px;
+  text-align: justify;
+  line-height: 20px;
+  margin-bottom: 100px;
+  font-size: 15px;
+}
+/* Modal Body Styles */
+.modal-body {
+  color: black;
+  padding: 60px;
+  font-family: Inter;
+}
+.modal-body p1 {
+  font-size: 16px;
+  font-family: Inter;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.modal-body p3 {
+  font-size: 17px;
+  align-content: center;
+  text-align: justify;
+  justify-content: center;
+  line-height: 2;
+  font-family: Inter;
+}
+.modal-body .det {
+  font-size: 15px;
+  line-height: .3;
+  color:black;
+  margin-left: 550px;
+  margin-top: -50px;
+}
+.no-border-table {
+  border-collapse: collapse;
+  margin: 40px 0 40px 0;
+}
+
+.no-border-table td {
+  margin: 40px 0 40px 0;
+  border: none;
+  padding: 2px 0px;
+  font-size: 14px;
+  vertical-align: top;
+  text-align: start;
+  align-items: center;
+  align-content: end;
+}
+.no-border-table p5 {
+  margin: 0 40px;
+  font-size: 16px;
+  font-family: Inter;
+}
+
+.admin {
+  line-height: 1;
+  color: black;
+  text-align: center;
+  display: block;
+  /* padding: 0px 70px; */
+  display: flex
+;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+}
+.admin p {
+  font-size: 16px;
+  font-family: Inter;
+  line-height: 0;
+  height: 50px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.adminA {
+  line-height: 1;
+  color: black;
+  text-align: right;
+  display: block;
+  padding: 0px 00px 0px 420px;
+}
+.adminAT {
+  line-height: 1;
+  color: black;
+  text-align: center;
+  display: block;
+  padding: 0px 0px 0 377px;
+}
+
+.affidavitheader {
+  text-align: left;
+  display: inline-block;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px;
+}
+.affidavit{
+  padding: 20px 60px;
+}
+.affidavitA{
+  padding: 50px 60px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.QA{
+  margin: -20px 0px 0px 40px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.QA p{
+  margin-top: -8px;
+  text-indent: 0px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: flex-start;
+}
+.QA p, .QA h3{
+  font-size: 14px;
+}
+.attest{
+  margin: 80px 0px 0px 00px;
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.attest h3{
+ text-align: center;
+ font-size: 18px;
+ margin-bottom: 25px;
+}
+
+.editable-inputQA{
+  border: none;
+  font-size: 12px;
+  outline: none;
+  text-transform: capitalize;
+  margin: -2px 10px;
+  cursor: text;
+  text-align: left;
+  width: 600px;
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  word-break: break-word;
+  resize: auto;
+  overflow: auto;
+  font-family: 'Times New Roman', Times, serif;
+}
+.editable-input{
+font-size: 16px;
+font-weight: 800;
+font-family: 'Times New Roman', Times, serif;
+}
+
+
+/* Modal Footer Styles */
+.modal-footer {
+  text-align: right;
+  margin-top: 430px;
+  margin-bottom: 20px;
+  padding: 1px;
+
+}
+.modal-case {
+  text-align: right;
+  margin-top: 200px;
+  margin-bottom: 20px;
+  padding: 1px;
+
+}
+.modal-header-button {
+  text-align: justify; 
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: stretch;
+  gap: 6px;
+  margin-left: 75%;
+  margin-top: 30px;
+}
+.no-print,
+.close-modal{
+visibility: visible; /* Default state: visible */
+color: #fff;
+border: none;
+padding: 10px 20px;
+border-radius: 4px;
+cursor: pointer;
+width: 125px;
+text-align: justify;
+}
+.no-print{
+background-color: #002e5f;
+color: white;
+}
+.close-modal {
+background-color: #fb0101;
+color: #fff;
+border: none;
+padding: 10px 20px;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.no-print:hover, .close-modal:hover{
+background-color: #fff;
+color: #002e5f;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button.close-modal {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.download-pdf {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+
+/* Modal Overlay */
+.case-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Modal Box */
+.case-modal {
+  background-color: #fff;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modal Content */
+.case-modal-content h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Agency Buttons */
+.agency-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+/* Individual Agency Button */
+.agency-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 160px;
+  height: 130px;
+  text-align: center;
+}
+
+.agency-button:hover {
+  background-color: #ddd;
+}
+
+/* Image Box Styling */
+.image-box {
+  width: 100px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Agency Image */
+.agency-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  margin-bottom: 4px; /* Adds space between image and name */
+}
+
+/* Agency Name Styling */
+.agency-button span {
+  margin-top: 5px; /* Adds space between image and name */
+}
+
+/* Footer */
+.case-modal-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.close-case-modal {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f44336;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-case-modal:hover {
+  background-color: #d32f2f;
+}
+dal:hover {
+  background-color: #d32f2f;
+}
