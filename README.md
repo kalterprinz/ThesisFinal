@@ -42,15 +42,16 @@ Usage Instructions
 1. Open **VSCode** and navigate to the project folder.
 
 2. Open a terminal and go to the backend directory:
-///////////////////////////////////
-   cd backend
-   node index.js
-///////////////////////////////////
 
-3. Open another terminal for the frontend:
-///////////////////////////////////
+   cd backend
+   
+   node index.js
+
+
+4. Open another terminal for the frontend:
+
    npm start
-///////////////////////////////////
+
 
 The frontend will launch in your browser at http://localhost:3000/.
 
